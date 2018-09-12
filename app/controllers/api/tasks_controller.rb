@@ -4,6 +4,7 @@ class Api::TasksController < ApplicationController
   def index
     # 後々のため、更新順で返します
     @tasks = Task.order('updated_at DESC')
+    render json: @tasks
   end
 
   # POST /tasks
