@@ -1,11 +1,9 @@
 class Api::TasksController < ApplicationController
-  protect_from_forgery except: :create
 
   # GET /tasks
   def index
     # 後々のため、更新順で返します
     @tasks = Task.order('updated_at DESC')
-    render json: @tasks
   end
 
   # POST /tasks
@@ -30,12 +28,10 @@ class Api::TasksController < ApplicationController
   end
 
   private
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_params
     params.fetch(:task, {}).permit(
       :name, :is_done
     )
   end
-
 end
